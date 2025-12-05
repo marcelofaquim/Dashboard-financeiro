@@ -1,16 +1,44 @@
-# React + Vite
+# 📊 Dashboard Financeiro
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Um mini dashboard interativo para controle de gastos pessoais, desenvolvido em **React + Vite** com **Chart.js**.  
+O projeto simula um painel bancário, ideal para demonstrar habilidades de front-end em cenários como Itaú e Santander.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Funcionalidades
 
-## React Compiler
+- **Resumo da conta**: saldo atual, limite e rendimento mensal.
+- **Transações recentes**: lista filtrada por semana ou mês.
+- **Gráfico de pizza**: distribuição dos gastos por categoria (Contas, Alimentação, Supermercado, Lazer, Transporte).
+- **Gráfico de linha**: evolução do saldo ao longo do tempo.
+- **Conselhos inteligentes**: sugestões de economia baseadas na categoria de maior gasto.
+- **Dark Mode**: alternância de tema claro/escuro.
+- **Responsividade**: adaptado para desktop e mobile.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🛠️ Tecnologias utilizadas
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- [React](https://react.dev/) + [Vite](https://vitejs.dev/)
+- [Chart.js](https://www.chartjs.org/) + [react-chartjs-2](https://react-chartjs-2.js.org/)
+- [CSS Grid/Flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout) para layout
+- [Vercel](https://vercel.com/) para deploy
+
+---
+
+## 📂 Estrutura do projeto
+
+src/ ├── components/ │ ├── Sidebar.jsx │ ├── Dashboard.jsx │ ├── Transactions.jsx │ ├── SpendPie.jsx │ ├── BalanceLine.jsx │ ├── Advice.jsx │ └── FilterPeriod.jsx ├── data/ │ └── transactions.js ├── styles/ │ └── styles.css ├── App.jsx └── main.jsx
+
+
+---
+
+## ▶️ Como rodar localmente
+
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/seu-usuario/dashboard-financeiro.git
+   cd dashboard-financeiro
+
+O projeto está disponível em produção via Vercel: https://vercel.com/marcelo-faquim-dos-anjos-projects/dashboard-financeiro
+
