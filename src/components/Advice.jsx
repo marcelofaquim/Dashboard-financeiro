@@ -1,6 +1,16 @@
 import { useMemo } from 'react';
 import { transactions } from '../data/transactions.js';
 
+function filterByPeriod(list, period) {
+  const now = new Date();
+  return list.filter((t) => {
+    const d = new Date(t.data);
+    const diffDays = (now - d) / (1000 * 60 * 60 * 24);
+    return period === 'semana' ? diffDays <= 7 : diffDays <= 30;
+  });
+}
+
+
 function getAdvice(list) {
   const totals = list.reduce((acc, t) => {
     acc[t.categoria] = (acc[t.categoria] || 0) + t.valor;
@@ -48,8 +58,9 @@ function getAdvice(list) {
   return { topCat, topVal, tips, reduction };
 }
 
-export default function Advice() {
-  const { topCat, tips, reduction } = useMemo(() => getAdvice(transactions), []);
+export default function Advice({ period }) {
+  const filtered = useMemo(() => filterByPeriod(transactions, period), [period]);
+  const { topCat, tips, reduction } = useMemo(() => getAdvice(filtered), [filtered]);
 
   return (
     <div className="card advice">

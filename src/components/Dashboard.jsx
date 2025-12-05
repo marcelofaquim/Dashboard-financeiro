@@ -1,7 +1,12 @@
+import { useState } from 'react';
 import SpendPie from './SpendPie.jsx';
 import Transactions from './Transactions.jsx';
+import FilterPeriod from './FilterPeriod.jsx';
+import BalanceLine from './BalanceLine.jsx';
 
 export default function Dashboard() {
+  const [period, setPeriod] = useState('mes')
+
   const balance = 1234.56;
   const rendimentoMensal = 0.6; // exemplo: 0.6% no mês
   const limite = 5000; // exemplo
@@ -19,11 +24,14 @@ export default function Dashboard() {
             </div>
           </div>
 
-          <Transactions />
+          <FilterPeriod onChange={setPeriod} />
+          <Transactions period={period} />
+          <BalanceLine period={period} />
         </div>
 
         <div className="right-col">
-          <SpendPie />
+          <SpendPie period={period}/>
+          
         </div>
       </div>
     </main>

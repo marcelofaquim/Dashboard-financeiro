@@ -10,6 +10,15 @@ import {
 
 Chart.register(ArcElement, Tooltip, Legend);
 
+function filterByPeriod(list, period) {
+  const now = new Date();
+  return list.filter((t) => {
+    const d = new Date(t.data);
+    const diffDays = (now -d) /(1000 * 60 * 60 * 24);
+    return period === 'semana' ? diffDays <= 7 : diffDays <= 30;
+  })
+}
+
 function aggregateByCategory(list) {
   const map = new Map();
   for (const t of list) {
@@ -20,8 +29,9 @@ function aggregateByCategory(list) {
   return { labels, values };
 }
 
-export default function SpendPie() {
-  const { labels, values } = useMemo(() => aggregateByCategory(transactions), []);
+export default function SpendPie({ period }) {
+  const filtered = useMemo(() => filterByPeriod(transactions, period), [period]);
+  const { labels, values } = useMemo(() => aggregateByCategory(filtered), [filtered]);
 
   const colors = ['#4bc0c0', '#ffcd56', '#ff6384', '#36a2eb', '#a78bfa', '#f59e0b'];
 

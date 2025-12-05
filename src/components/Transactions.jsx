@@ -1,6 +1,26 @@
 import { transactions } from '../data/transaction';
 
-export default function Transaction() {
+
+function filterByPeriod(list, period) {
+    const now = new Date();
+    return list.filter((t) => {
+        const date = new Date(t.data);
+        if(period === 'semana') {
+            const diff = (now - date) /(100 * 60 * 60 * 24);
+            return diff <=7;
+        }
+        if (period === 'mes') {
+            const diff = (now - date) /(100 * 60 * 60 * 24);
+            return diff <=30;
+        }
+        return true;
+        });
+    }
+
+
+export default function Transaction({ period }) {
+    const filtered = filterByPeriod(transactions, period);
+
     return(
         <div className="card">
             <h3>Transações</h3>
@@ -16,7 +36,7 @@ export default function Transaction() {
                 ))}
             </div>
             <div className="actions">
-                <span className="badge">5 mais recentes</span>
+                <span className="badge">{filtered.length} transações</span>
                 <a className="link" href="#">Ver tudo</a>
             </div>
         </div>
